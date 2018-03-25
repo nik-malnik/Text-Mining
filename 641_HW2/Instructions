@@ -1,0 +1,28 @@
+If you want to run from command line. Unzip the folder and change directory to the folder. The following command will start gathering macro_f1 scores across different k's and the 3 different algorithms 
+
+python document_cluster.py
+
+
+
+
+
+If you want to run more specific clustering, in python 2.7.xx environment.
+
+
+import document_cluster as DC
+
+# To gather all the dev and test data
+[docs, docs_test, freq_of_idx, freq_of_idx_test, word_of_idx, idx_of_word, word_of_idx_test] = Read_Data()
+tf_mat = Create_TF_Matrix(docs, len(freq_of_idx))
+tfidf_mat = Create_TFIDF_Matrix(docs, freq_of_idx,len(freq_of_idx))
+
+# choose your k
+k = 10
+
+# initialization = 1 for using kmeans++ else 0
+[centroids, classification] = DC.Get_Kmeans_Clusters(tfidf_mat,k=k,initialization=1)
+DC.Write_Cluster_Output(classification)
+DC.Evaluate_F1_Score('HW2_dev.gold_standards','namlik1-test-cluster.txt')
+
+# Run Classification on Test Data
+DC.Classify_Test_Data(centroids)

@@ -1,0 +1,5 @@
+cd /home/../../HW3-nmalik1
+python src/link_analysis.py
+
+The first command to change directory into the unzipped submission folder.
+The second line runs the code to find Page Ranks, calculate time take, create output files for evaluation. 
